@@ -7,7 +7,7 @@ ORDER BY 1,2
 
 
 -- Looking at total cases vs total deaths
--- Shows the possibility percentage of dying if you contracted Covid in Türkiye
+-- Shows the possibility percentage of dying if you contracted Covid in TÃ¼rkiye
 
 SELECT Location, date, total_cases, new_cases, total_deaths, ROUND((total_deaths/total_cases)*100,2) as death_percentage
 FROM Turkey_Covid_Project..CovidDeaths$
@@ -18,7 +18,7 @@ ORDER BY 1,2
 
 
 -- Looking at total cases vs the population
--- Shows the percentage of the population infected by Covid in Türkiye
+-- Shows the percentage of the population infected by Covid in TÃ¼rkiye
 
 SELECT Location, date, population, total_cases, ROUND((total_cases/population)*100,2) as infected_percentage 
 FROM Turkey_Covid_Project..CovidDeaths$
@@ -28,7 +28,7 @@ ORDER BY 1,2
 
 
 
---Looking at the percent of the population infected in countries that shares borders with Türkiye
+--Looking at the percent of the population infected in countries that shares borders with TÃ¼rkiye
 
 SELECT Location, population, Max(total_cases) Highest_infection_count, ROUND(MAX((total_cases/population)*100),2) as Percent_population_infected
 FROM Turkey_Covid_Project..CovidDeaths$
@@ -41,7 +41,7 @@ ORDER BY Percent_population_infected DESC
 
 
 
---Showing countries that shares borders with Türkiye with Highest Death Count per population
+--Showing countries that shares borders with TÃ¼rkiye with Highest Death Count per population
 
 SELECT location, MAX(CAST((total_deaths) AS INT)) as Total_Deaths_Count
 FROM Turkey_Covid_Project..CovidDeaths$
@@ -65,7 +65,7 @@ ORDER BY 1,2
 
 
 
---Looking at poplulation vs vaccinations in Türkiye
+--Looking at poplulation vs vaccinations in TÃ¼rkiye
 
 SELECT dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
 , SUM(CONVERT(int,vac.new_vaccinations)) OVER (PARTITION BY dea.location ORDER BY dea.location, dea.date) AS Rolling_people_vaccinated
@@ -80,7 +80,7 @@ ORDER BY 2,3
 
 
 
---Using CTE to look at the percentage of poeple vaccinated in Türkiye
+--Using CTE to look at the percentage of poeple vaccinated in TÃ¼rkiye
 
 WITH PopvsVac (continent, location, Date, population, new_vaccinations, Rolling_people_vaccinated)
 as
@@ -145,7 +145,7 @@ WHERE dea.location = 'Turkey'
 
 
 
---View of percent of the population infected in countries that shares borders with Türkiye
+--View of percent of the population infected in countries that shares borders with TÃ¼rkiye
 
 CREATE VIEW Percent_population_infected
 as
@@ -160,7 +160,7 @@ GROUP BY Location, population
 
 
 
---View of the percentage of the population infected by Covid in Türkiye
+--View of the percentage of the population infected by Covid in TÃ¼rkiye
 
 CREATE VIEW infected_percentage
 as
